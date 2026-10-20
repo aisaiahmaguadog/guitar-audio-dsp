@@ -52,11 +52,11 @@ Listen to the [source recording](audio/source_guitar.wav) and the [processed res
 
 ![FFT magnitude and phase spectrum](results/fft.png)
 
-**Spectrogram before and after processing.** The dense energy from roughly 1 kHz up to the 6 kHz cutoff in the processed signal comes from the tanh nonlinearity. Linear filters can only rescale frequency components that already exist.
+**Spectrogram before and after processing.** The additional harmonic energy visible above the source spectrum is introduced primarily by the tanh nonlinearity. Linear filters can only rescale frequency components that are already present.
 
 ![Spectrogram comparison](results/spectrogram_comparison.png)
 
-**Waveform before and after.** Soft clipping compresses the strum transients, giving a flatter, more sustained envelope.
+**Waveform before and after.** Soft clipping compresses the strum transients, producing a more compressed envelope and making lower-amplitude portions of each strum more prominent.
 
 ![Waveform comparison](results/waveform_comparison.png)
 
@@ -83,14 +83,22 @@ The notebook in `notebooks/` walks through the same pipeline step by step, impor
 
 ```
 guitar-audio-dsp/
-├── signal_processing.py      # analysis + processing pipeline
+├── .gitignore
+├── README.md
+├── requirements.txt
+├── signal_processing.py            # analysis + processing pipeline
+├── audio/
+│   ├── source_guitar.wav           # original recording
+│   └── processed_guitar.wav        # generated output
 ├── notebooks/
 │   └── guitar_audio_dsp.ipynb
-├── audio/
-│   ├── source_guitar.wav     # original recording
-│   └── processed_guitar.wav  # generated output
-├── results/                  # generated figures
-└── requirements.txt
+└── results/                        # generated figures
+    ├── waveform.png
+    ├── fft.png
+    ├── spectrogram.png
+    ├── waveform_comparison.png
+    ├── spectrum_comparison.png
+    └── spectrogram_comparison.png
 ```
 
 ## Technical Notes
